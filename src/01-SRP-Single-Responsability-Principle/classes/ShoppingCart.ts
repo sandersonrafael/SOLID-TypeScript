@@ -1,4 +1,4 @@
-import { CartItem } from '../interfaces/CartItem';
+import { CartItem } from './interfaces/CartItem';
 
 export class ShoppingCart {
   private readonly _items: CartItem[] = [];

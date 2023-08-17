@@ -1,4 +1,4 @@
-import { OrderStatus } from '../interfaces/OrderStatus';
+import { OrderStatus } from './interfaces/OrderStatus';
 import { Messaging } from '../services/Messaging';
 import { Persistence } from '../services/Persistence';
 import { ShoppingCart } from './ShoppingCart';
@@ -22,7 +22,7 @@ export class Order {
       return;
     }
     this._orderStatus = 'closed';
-    this.messaging.sendMessage(`Seu pedido com o total de R$ ${this.cart.totalWithDiscount(.5)} foi recebido.`);
+    this.messaging.sendMessage(`Seu pedido com o total de R$ ${this.cart.totalWithDiscount()} foi recebido.`);
     this.persistence.saveOrder();
     this.cart.clear();
   }
