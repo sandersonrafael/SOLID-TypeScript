@@ -1,4 +1,4 @@
-type CartItem = { name: string; price: number };
+import { CartItem } from '../interfaces/CartItem';
 
 export class ShoppingCart {
   private readonly _items: CartItem[] = [];
@@ -20,22 +20,16 @@ export class ShoppingCart {
     return Number(total);
   }
 
-  checkout(): void {
-    if (this.isEmpty()) {
-      console.log('Seu carrinho está vazio');
-      return;
-    }
+  totalWithDiscount(discount: number = 0): number {
+    return Number((this.total() - this.total() * discount).toFixed(2));
   }
 
   isEmpty(): boolean {
     return this._items.length === 0;
   }
+
+  clear(): void {
+    this._items.splice(0);
+    console.log('Carrinho de compras foi limpo.');
+  }
 }
-
-const shoppingCart = new ShoppingCart();
-shoppingCart.addItem({ name: 'Camiseta', price: 44.51235 });
-shoppingCart.addItem({ name: 'Saia', price: 74.93213 });
-shoppingCart.addItem({ name: 'Calça', price: 109.911 });
-
-console.log(shoppingCart.items);
-console.log(shoppingCart.total());
